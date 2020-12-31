@@ -24,7 +24,7 @@ public class Employee {
     @Column( columnDefinition = " Double  CHECK ( salary>0)")
     private Double  salary;
 
-    @OneToMany(mappedBy = "employee")
+    @ManyToMany(mappedBy = "employee")
     private  Set<Address> addressSet;
 
 

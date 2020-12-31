@@ -26,7 +26,7 @@ public class Address {
     @JoinColumn(name="fk_Employee")
     private Employee employee;
 
-    @OneToMany( targetEntity = PhoneNumber.class,cascade = CascadeType.ALL)
+    @ManyToMany( targetEntity = PhoneNumber.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_PhoneNumber", referencedColumnName = "id")
     private Set<PhoneNumber> phoneNumber;
 
