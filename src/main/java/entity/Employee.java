@@ -18,13 +18,13 @@ public class Employee {
     public FullName fullName;
 
     @Column(nullable = true,unique = true)//problem
-    private long    empCode;
+    public long    empCode;
    // @Check(constraints = "salary > 0")
 
     @Column( columnDefinition = " Double  CHECK ( salary>0)")
     private Double  salary;
 
-    @ManyToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee")
     private  Set<Address> addressSet;
 
 

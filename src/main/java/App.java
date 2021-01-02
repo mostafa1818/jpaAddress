@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class App {
@@ -41,14 +42,24 @@ public class App {
 
         if (employeeDao.load(CHECK_EMP_ID) == null)//problem
         {
-             initializeData();
+           //   initializeData();
         }
    //addressDao.loadCity();
-        System.out.println("MAX SALARY:="+employeeDao.loadSalary());
-        System.out.println("NAME OF EMPLOYEE  TAKE MAX SALARY:="+employeeDao.loadFirstSalary()[0]+" "+employeeDao.loadFirstSalary()[1]);
+//        System.out.println("MAX SALARY:="+employeeDao.loadSalary());
+//        System.out.println("NAME OF EMPLOYEE  TAKE MAX SALARY:="+employeeDao.loadFirstSalary()[0]+" "+employeeDao.loadFirstSalary()[1]);
        // deleteData();
        // updateData();
-         showData();
+        System.out.println("--------------------------------------------------------------------------------------------------------");
+
+        List<Employee> employees2 =employeeDao.findEmployeesBySupervisor2();
+        for (Employee e:employees2)
+        {
+
+            System.out.println(e.getId());
+        }
+        System.out.println(employees2);
+        System.out.println("--------------------------------------------------------------------------------------------------------");
+      //   showData();
 
         entityManager.getTransaction().commit();
         entityManager.close();
