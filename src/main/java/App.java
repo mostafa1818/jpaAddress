@@ -50,16 +50,25 @@ public class App {
        // deleteData();
        // updateData();
         System.out.println("--------------------------------------------------------------------------------------------------------");
+//
+//        List<Employee> employees2 =employeeDao.findEmployeesBySupervisor4();
+//        for (Employee e:employees2)
+//        {
+//
+//            System.out.println(e.getFullName().getFirstName()+"  "+e.getFullName().getLastName()+"  "+e.getId());
+//        }
 
-        List<Employee> employees2 =employeeDao.findEmployeesBySupervisor2();
-        for (Employee e:employees2)
-        {
-
-            System.out.println(e.getId());
-        }
-        System.out.println(employees2);
         System.out.println("--------------------------------------------------------------------------------------------------------");
-      //   showData();
+
+        employeeDao.findEmployeesBySupervisor();
+
+
+
+        System.out.println("--------------------------------------------------------------------------------------------------------");
+
+    //    employeeDao.practice3((long) 123324334);
+        employeeDao.practice4("010002777");
+        System.out.println("--------------------------------------------------------------------------------------------------------");
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -82,14 +91,14 @@ public class App {
 
 
         //------------------phoneNumber
-        phoneNumber[0]=createPhoneNumber(02101022233,02133234432);
-        phoneNumber[1]=createPhoneNumber(010002777777,02133255552);
-        phoneNumber[2]=createPhoneNumber(02101033233,02133233332);
-        phoneNumber[3]=createPhoneNumber(021010244233,021332344432);
-        phoneNumber[4]=createPhoneNumber(010002777777,02133255552);
-        phoneNumber[5]=createPhoneNumber(02101022233,02133234432);
-        phoneNumber[6]=createPhoneNumber(02101033233,02133233332);
-        phoneNumber[7]=createPhoneNumber(021010244233,021332344432);
+        phoneNumber[0]=createPhoneNumber("021010332","021334432");
+        phoneNumber[1]=createPhoneNumber("010002777","021332552");
+        phoneNumber[2]=createPhoneNumber("0210103362","0213323332");
+        phoneNumber[3]=createPhoneNumber("021010244","02133234432");
+        phoneNumber[4]=createPhoneNumber("010002777","0213325552");
+        phoneNumber[5]=createPhoneNumber("02101022","0213323432");
+        phoneNumber[6]=createPhoneNumber("021010553","021332332");
+        phoneNumber[7]=createPhoneNumber("02101024","0213323442");
 
 
         //------------------fullName
@@ -122,42 +131,35 @@ public class App {
         phoneNumber1.add(phoneNumber[1]);
         addresses[0].setPhoneNumber(phoneNumber1);
         Set<PhoneNumber> phoneNumber2=new HashSet<>();
-        phoneNumber2.add(phoneNumber[0]);
+        phoneNumber2.add(phoneNumber[3]);
         phoneNumber2.add(phoneNumber[1]);
         addresses[1].setPhoneNumber(phoneNumber2);
         Set<PhoneNumber> phoneNumber3=new HashSet<>();
-        phoneNumber3.add(phoneNumber[0]);
-        phoneNumber3.add(phoneNumber[1]);
+        phoneNumber3.add(phoneNumber[2]);
+        phoneNumber3.add(phoneNumber[3]);
         addresses[2].setPhoneNumber(phoneNumber3);
         Set<PhoneNumber> phoneNumber4=new HashSet<>();
-        phoneNumber4.add(phoneNumber[0]);
-        phoneNumber4.add(phoneNumber[1]);
+        phoneNumber4.add(phoneNumber[2]);
+        phoneNumber4.add(phoneNumber[3]);
         addresses[3].setPhoneNumber(phoneNumber4);
         Set<PhoneNumber> phoneNumber5=new HashSet<>();
-        phoneNumber5.add(phoneNumber[0]);
-        phoneNumber5.add(phoneNumber[1]);
+        phoneNumber5.add(phoneNumber[4]);
+        phoneNumber5.add(phoneNumber[5]);
         addresses[4].setPhoneNumber(phoneNumber5);
         Set<PhoneNumber> phoneNumber6=new HashSet<>();
-        phoneNumber6.add(phoneNumber[0]);
-        phoneNumber6.add(phoneNumber[1]);
+        phoneNumber6.add(phoneNumber[4]);
+        phoneNumber6.add(phoneNumber[5]);
         addresses[5].setPhoneNumber(phoneNumber6);
         Set<PhoneNumber> phoneNumber7=new HashSet<>();
-        phoneNumber7.add(phoneNumber[0]);
-        phoneNumber7.add(phoneNumber[1]);
+        phoneNumber7.add(phoneNumber[6]);
+        phoneNumber7.add(phoneNumber[7]);
         addresses[6].setPhoneNumber(phoneNumber7);
         Set<PhoneNumber> phoneNumber8=new HashSet<>();
-        phoneNumber8.add(phoneNumber[0]);
-        phoneNumber8.add(phoneNumber[1]);
+        phoneNumber8.add(phoneNumber[6]);
+        phoneNumber8.add(phoneNumber[7]);
         addresses[7].setPhoneNumber(phoneNumber8);
 
-        addressDao.save(addresses[0]);
-        addressDao.save(addresses[1]);
-        addressDao.save(addresses[2]);
-        addressDao.save(addresses[3]);
-        addressDao.save(addresses[4]);
-        addressDao.save(addresses[5]);
-        addressDao.save(addresses[6]);
-        addressDao.save(addresses[7]);
+
 
 
         //------------------employee
@@ -199,6 +201,27 @@ public class App {
         phoneNumberDao.save(phoneNumber[6]);
         phoneNumberDao.save(phoneNumber[7]);
 
+
+
+        addresses[0].setEmployee(employees[0]);
+        addresses[1].setEmployee(employees[0]);
+        addresses[2].setEmployee(employees[1]);
+        addresses[3].setEmployee(employees[1]);
+        addresses[4].setEmployee(employees[2]);
+        addresses[5].setEmployee(employees[2]);
+        addresses[6].setEmployee(employees[3]);
+        addresses[7].setEmployee(employees[3]);
+
+
+        addressDao.save(addresses[0]);
+        addressDao.save(addresses[1]);
+        addressDao.save(addresses[2]);
+        addressDao.save(addresses[3]);
+        addressDao.save(addresses[4]);
+        addressDao.save(addresses[5]);
+        addressDao.save(addresses[6]);
+        addressDao.save(addresses[7]);
+
     }
 
     public static FullName createFullName( String  firstName, String  lastName)
@@ -217,7 +240,7 @@ public class App {
         return employee;
     }
 
-    public static PhoneNumber createPhoneNumber( long   telNumber,long   mobNumber) {
+    public static PhoneNumber createPhoneNumber( String   telNumber,String   mobNumber) {
         PhoneNumber phoneNumber = new PhoneNumber();
         phoneNumber.setMobNumber(mobNumber);
         phoneNumber.setTelNumber(telNumber);
