@@ -1,6 +1,12 @@
 package dao;
 
+import entity.FullName;
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.List;
 
 public abstract class AbstractJpaDao <T,U>{
 
@@ -25,6 +31,12 @@ public abstract class AbstractJpaDao <T,U>{
     }
 
 
-
+    public List<T> loadAll(T entity)
+    {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> c=   cb.createQuery(getEntityClass());
+        TypedQuery<T> t=entityManager.createQuery(c);
+       return t.getResultList();
+    }
     public abstract Class <T> getEntityClass();
 }
